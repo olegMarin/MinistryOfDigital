@@ -57,7 +57,7 @@ setTheme=(theme)=>{
     }
     return (
     <div {...this.props} style={{width: '100vw', height: '100vh'}}>
-        <Header/>
+        <Header {...this.state} />
         <RusSVG 
           {...this.state} 
           isOnDrop={(region)=>this.handlerOnDropDataToRegion(region)}

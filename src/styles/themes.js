@@ -10,6 +10,7 @@ const colors = {
         dragStroke: '#474',
         coast: '#006cdf',
 
+        header:'#2E5BFF88'
     },
     dark: {
         background: '#000',
@@ -20,6 +21,7 @@ const colors = {
         dragBackgrount: '#050',
         dragStroke: '#474',
         coast: '#00ccff',
+        header: '#2E5BFF88'
     }
 }
 

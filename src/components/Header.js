@@ -5,14 +5,33 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hover: ''
+            search: ''
         }
+    }
+
+    handleKeyPress(event) {
+        if (event.key == 'Enter') {
+            console.log('enter press here! ')
+        }
+
+    changeSearch(value){
+        //тут прокидываем наверх найденные варианты, чтобы предлагались новые экземпляры
+        this.setState({search: value})
     }
 
     render(){
         return(
-            <div className='headerContainer' >
-                
+            <div className='headerContainer' style={{ backgroundColor: colors[this.props.theme].header}}>
+                <input className='headerSearchInput' 
+                    style={{ 
+                        background: colors[this.props.theme].backgroundColor,
+                        fontColor: colors[this.props.theme].maneStroke,
+                         }}
+                    onKeyPress={this.handleKeyPress}  
+                    onChange={(e)=>this.changeSearch(e.target.value)}   
+                    value={this.state.search}
+                    
+                         />
             </div>
         )
     }
