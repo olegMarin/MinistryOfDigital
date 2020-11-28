@@ -13,8 +13,8 @@ export default class Header extends React.Component {
         if (event.key == 'Enter') {
             console.log('enter press here! ')
         }
-
-    changeSearch(value){
+    }
+    changeSearch=(value)=>{
         //тут прокидываем наверх найденные варианты, чтобы предлагались новые экземпляры
         this.setState({search: value})
     }
@@ -30,7 +30,7 @@ export default class Header extends React.Component {
                     onKeyPress={this.handleKeyPress}  
                     onChange={(e)=>this.changeSearch(e.target.value)}   
                     value={this.state.search}
-                    
+
                          />
             </div>
         )
