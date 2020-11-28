@@ -26,24 +26,24 @@ export default class Space extends React.Component {
             history: [currentNode],
             currentNode,
             hover: '',
-            rounds:[],
+            rounds: [],
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let rounds = []
         const nodeValues = Object.values(nodes)
-        for (let i=0; i<nodeValues.length; i++){
+        for (let i = 0; i < nodeValues.length; i++) {
             let r = {
                 id: i,
-                top: i + "%",
-                left: (i%10)*10 + "%",
+                top: i * 10 + "%",
+                left: (i % 10) * 10 + "%",
                 node: nodeValues[i],
                 name: nodeValues[i].name
             }
-            rounds=[...rounds, r]
+            rounds = [...rounds, r]
         }
-        this.setState({rounds: rounds})
+        this.setState({ rounds: rounds })
     }
 
     getHw = (item) => {
@@ -58,12 +58,12 @@ export default class Space extends React.Component {
         }
         return 0
     }
-    
-    onNodeClick = (item) => {
-        if (this.state.currentNode !== item.node) {
+
+    onNodeClick = (node) => {
+        if (this.state.currentNode !== node) {
             this.setState({
-                currentNode: item.node,
-                history: [...this.state.history, item.node]
+                currentNode: node,
+                history: [...this.state.history, node]
             })
         } else {
             if (this.state.history.length >= 2) {
@@ -75,8 +75,8 @@ export default class Space extends React.Component {
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div
                 style={{
                     width: '100vw',
@@ -87,18 +87,22 @@ export default class Space extends React.Component {
                     position: 'absolute'
                 }}
             >
-                {this.state.rounds.map((item, index)=>{
-                    return(
+                {this.state.rounds.map((item, index) => {
+                    return (
                         <Round
                             theme={this.props.theme}
                             key={index}
                             item={item}
                             hw={this.getHw(item)}
-                            onClick={() => this.onNodeClick(item)}
+                            onClick={() => this.onNodeClick(item.node)}
                         />
                     )
                 })}
-
+                <div style={{ position: 'absolute', right: 0, top: 200, display: 'flex', flexDirection: 'column' }}>
+                    {this.state.history.slice(0, this.state.history.length - 1).map((node) => (
+                        <a href="#" onClick={(e) => { e.preventDefault(); this.onNodeClick(node) }}>{node.name}</a>
+                    ))}
+                </div>
             </div>
         )
     }
