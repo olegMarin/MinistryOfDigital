@@ -2,6 +2,7 @@ import React from 'react';
 import RusSVG from './svg/rus'
 import russia from './svg/russia.json'
 import colors from './styles/themes'
+import Header from './components/Header'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ setTheme=(theme)=>{
     }
     return (
     <div {...this.props} style={{width: '100vw', height: '100vh'}}>
+        <Header/>
         <RusSVG 
           {...this.state} 
           isOnDrop={(region)=>this.handlerOnDropDataToRegion(region)}
