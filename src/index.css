@@ -9,7 +9,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  monospace;
 }
 path, rect {
   transition: 0.8s;
@@ -45,4 +45,14 @@ path, rect {
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
+  }
+
+  .round{
+    border-color: #8888;
+    border-width: 1px;
+    border-radius: 200px;
+    background-color: #8882;
+    position: absolute;
+    
+    box-shadow: 1px 2px 7px 0px black;
   }

@@ -72,10 +72,19 @@ export default class RusSVG extends React.Component {
       let backgroundClicked = this.props.allActiveColors.backgroundClicked
       let allBackground = colors[this.props.theme].background
         return (
-            <div>
-                <svg  width="2125.9841" height="1417.3228" 
+            <div 
+             style={{
+               wight: "100vw",
+               height: this.props.isMap? '100vh': 0,
+               transition: '1s',
+               
+               zIndex: 5,
+             }}
+            >
+                <svg  width="100%" height="100%" 
                 viewBox="0 0 1700.7874 1133.8582" id="svg2"
-                version="1.1">
+                version="1.1"
+                >
    
                     <defs id="defs906">
                         <marker  

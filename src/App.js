@@ -5,17 +5,19 @@ import colors from './styles/themes'
 import Header from './components/Header'
 import axi from './functions/axiosf';
 import publicIP from 'react-native-public-ip';
+import Space from './SpaceScreen'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      theme: 'light',
+      theme: 'dark',
       droped: [], //тут будут лежать все регионы, в которые дропнуты сущности данных
       clicked: '', //тут лежит регион, по которому кликнули последний раз
       regionsBackground: {},
       ip: null,
-      myRegion: {}
+      myRegion: {},
+      isMap: false
     }
   }
 
@@ -74,8 +76,16 @@ setTheme=(theme)=>{
     backgroundClicked: colors[this.state.theme].backgroundClicked,
     }
     return (
-    <div {...this.props} style={{width: '100vw', height: '100vh'}}>
+      <div style={{ 
+        width: '100vw', 
+        height: '100vh', 
+        backgroundColor: colors[this.state.theme].background,
+        overflow: 'hidden' }}>
         <Header {...this.state} />
+        <Space 
+          {...this.state}
+          allActiveColors={allActiveColors}
+        />
         <RusSVG 
           {...this.state} 
           isOnDrop={(region)=>this.handlerOnDropDataToRegion(region)}
