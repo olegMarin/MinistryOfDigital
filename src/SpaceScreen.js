@@ -1,55 +1,78 @@
 import React from "react";
-import colors from "./styles/themes"
 import Round from "./components/Round"
 
-let gr={
-    1: {
-        "45": 4,
-        "33": 4,
-        "84": 4,
-        "68": 3,
-        "42": 2,
-        "25": 2,
-    },
-    2: {
-        "45": 5,
-        "33": 5,
-        "84": 5,
-        "68": 4,
-        "42": 3,
-        "25": 4,
-    }
+const nodes = ['ФизЛицо', 'Государство', 'ЦифровойРесурс', 'ЮрЛицо', 'Организация', 'МедОрганизация', 'МедРаботник', 'Дом']
+    .reduce((o, v) => ({ ...o, [v]: { name: v, parents: {}, children: {} } }), {})
+const connect = (parent, child, type) => {
+    parent.children[child.name] = { type, node: child }
+    child.parents[parent.name] = { type, node: parent }
 }
+connect(nodes.ФизЛицо, nodes.Государство, 'может жить в')
+connect(nodes.ФизЛицо, nodes.ЦифровойРесурс, 'может иметь')
+connect(nodes.ЮрЛицо, nodes.ЦифровойРесурс, 'может иметь')
+connect(nodes.ФизЛицо, nodes.ЮрЛицо, 'может зарегистрировать')
+connect(nodes.ФизЛицо, nodes.Организация, 'может посетить')
+connect(nodes.ФизЛицо, nodes.МедОрганизация, 'может обратиться в')
+connect(nodes.МедОрганизация, nodes.МедРаботник, 'имеет')
+connect(nodes.ЮрЛицо, nodes.Государство, 'регистрируется в')
+connect(nodes.ЮрЛицо, nodes.Дом, 'может владеть')
+connect(nodes.ФизЛицо, nodes.Дом, 'может владеть')
 
 export default class Space extends React.Component {
     constructor(props) {
         super(props)
+        const currentNode = nodes.ФизЛицо
         this.state = {
+            history: [currentNode],
+            currentNode,
             hover: '',
             rounds:[],
-            step: 0,
-            graph:{
-                "45": 3,
-                "33": 2,
-                "84":2,
-                "68":2,
-                "42":1,
-                "25":1,
-            }
         }
     }
 
     componentDidMount(){
         let rounds = []
-        for (let i=0; i<91; i++){
+        const nodeValues = Object.values(nodes)
+        for (let i=0; i<nodeValues.length; i++){
             let r = {
                 id: i,
                 top: i + "%",
                 left: (i%10)*10 + "%",
+                node: nodeValues[i],
+                name: nodeValues[i].name
             }
             rounds=[...rounds, r]
         }
         this.setState({rounds: rounds})
+    }
+
+    getHw = (item) => {
+        if (this.state.currentNode === item.node) {
+            return 3
+        }
+        if (Object.values(this.state.currentNode.children).map(({ node }) => node).includes(item.node)) {
+            return 2
+        }
+        if (Object.values(this.state.currentNode.parents).map(({ node }) => node).includes(item.node)) {
+            return 4
+        }
+        return 0
+    }
+    
+    onNodeClick = (item) => {
+        if (this.state.currentNode !== item.node) {
+            this.setState({
+                currentNode: item.node,
+                history: [...this.state.history, item.node]
+            })
+        } else {
+            if (this.state.history.length >= 2) {
+                this.setState(({ history }) => ({
+                    currentNode: history[history.length - 2],
+                    history: history.slice(0, history.length - 1)
+                }))
+            }
+        }
     }
 
     render(){
@@ -70,11 +93,8 @@ export default class Space extends React.Component {
                             theme={this.props.theme}
                             key={index}
                             item={item}
-                            hw={(!!this.state.graph[index]) ? this.state.graph[index]:0}
-                            onClick={() => { 
-                                this.setState({step: this.state.step++, graph: gr[this.state.step]})
-
-                                }}
+                            hw={this.getHw(item)}
+                            onClick={() => this.onNodeClick(item)}
                         />
                     )
                 })}

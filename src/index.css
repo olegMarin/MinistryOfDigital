@@ -46,16 +46,38 @@ path, rect {
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
-  }
+}
 
-  .round{
-    border-color: #8888;
-    border-width: 1px;
-    border-radius: 200px;
-    background-color: #8882;
-    position: absolute;
-    z-index: 6;
-    box-shadow: 1px 2px 7px 0px black;
-    transition: 2s;
-    cursor: pointer;
+.round{
+  border-color: #8888;
+  border-width: 1px;
+  border-radius: 200px;
+  background-color: #8882;
+  position: absolute;
+  z-index: 6;
+  box-shadow: 1px 2px 7px 0px black;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.round-disappearing {
+  /* animation: round 1s; */
+  transform: scale(3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes round {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
+  50% {
+    transform: scale(5);
+    opacity: 0.3
+  }
+  to {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
