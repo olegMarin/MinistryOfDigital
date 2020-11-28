@@ -3,6 +3,8 @@ import RusSVG from './svg/rus'
 import russia from './svg/russia.json'
 import colors from './styles/themes'
 import Header from './components/Header'
+import axi from './functions/axiosf';
+import publicIP from 'react-native-public-ip';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,12 +13,28 @@ export default class App extends React.Component {
       theme: 'light',
       droped: [], //тут будут лежать все регионы, в которые дропнуты сущности данных
       clicked: '', //тут лежит регион, по которому кликнули последний раз
-      regionsBackground: {}
+      regionsBackground: {},
+      ip: null,
+      myRegion: {}
     }
   }
 
 componentDidMount(){
   this.changeRegionsBackground()
+  publicIP()
+    .then(ip => {
+      console.log(ip);
+      this.setState({ ip: ip })
+      axi("geoProxy.php", "null", { ip: ip }).then((data) => {
+          let rCode = data.country_code.toLowerCase() + "-" + data.region_code.toLowerCase() 
+          this.setState({ myRegion: data, droped: [rCode]})
+        })
+
+
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 setTheme=(theme)=>{

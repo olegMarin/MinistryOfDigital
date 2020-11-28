@@ -5,7 +5,8 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: ''
+            search: '',
+            placeholder: 'введите любую сущность, регион'
         }
     }
 
@@ -30,7 +31,7 @@ export default class Header extends React.Component {
                     onKeyPress={this.handleKeyPress}  
                     onChange={(e)=>this.changeSearch(e.target.value)}   
                     value={this.state.search}
-
+                    placeholder={this.state.placeholder}
                          />
             </div>
         )
