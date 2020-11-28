@@ -26,6 +26,7 @@ path, rect {
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
+  z-index: 7;
 }
 
 .headerSearchInput{
@@ -53,6 +54,8 @@ path, rect {
     border-radius: 200px;
     background-color: #8882;
     position: absolute;
-    
+    z-index: 6;
     box-shadow: 1px 2px 7px 0px black;
+    transition: 2s;
+    cursor: pointer;
   }
