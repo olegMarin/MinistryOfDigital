@@ -3,10 +3,19 @@ import Round from "./components/Round"
 
 const nodes = ['ФизЛицо', 'Государство', 'ЦифровойРесурс', 'ЮрЛицо', 'Организация', 'МедОрганизация', 'МедРаботник', 'Дом']
     .reduce((o, v) => ({ ...o, [v]: { name: v, parents: {}, children: {} } }), {})
+
+// Connect parent to children with relation
 const connect = (parent, child, type) => {
     parent.children[child.name] = { type, node: child }
     child.parents[parent.name] = { type, node: parent }
 }
+
+// Connect as subtypes
+const connectSubtype = (superclass, subclass) => {
+    superclass.subclasses[subclass.name] = subclass
+    subclass.superclasses[superclass.name] = superclass
+}
+
 connect(nodes.ФизЛицо, nodes.Государство, 'может жить в')
 connect(nodes.ФизЛицо, nodes.ЦифровойРесурс, 'может иметь')
 connect(nodes.ЮрЛицо, nodes.ЦифровойРесурс, 'может иметь')
