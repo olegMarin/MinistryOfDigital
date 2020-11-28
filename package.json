@@ -1,7 +1,7 @@
 {
   "name": "react-dragdropmap",
   "version": "0.0.1",
-  "description": "React component drag drop data modal maps",
+  "description": "React component data models navi",
   "main": "./lib/index.js",
   "engines": {
     "node": ">= 5.2.0"

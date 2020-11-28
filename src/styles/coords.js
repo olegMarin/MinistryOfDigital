@@ -1,0 +1,48 @@
+
+
+
+
+const coords = [
+    { top: "42%", left: "37%" },
+    { top: "47%", left: "22%" },
+    { top: "17%", left: "26%" },
+    { top: "12%", left: "44%" },
+    { top: "35%", left: "59%" },
+    { top: "64%", left: "65%" },
+    { top: "75%", left: "84%" },
+    { top: "73%", left: "27%" },
+    { top: "70%", left: "52%" },
+    { top: "45%", left: "43%" },
+    { top: "41%", left: "72%" },
+    { top: "28%", left: "29%" },
+    { top: "35%", left: "37%" },
+    { top: "46%", left: "77%" },
+    { top: "70%", left: "13%" },
+    { top: "19%", left: "13%" },
+    { top: "35%", left: "87%" },
+    { top: "45%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "74%", left: "40%" },
+    { top: "35%", left: "67%" },
+    { top: "42%", left: "82%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "75%", left: "37%" },
+    { top: "20%", left: "57%" },
+    { top: "75%", left: "37%" },
+]
+
+export default coords

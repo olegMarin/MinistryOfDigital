@@ -1,5 +1,6 @@
 import React from "react";
 import Round from "./components/Round"
+import coords from "./styles/coords"
 
 const nodes = [
     'ФизЛицо', 
@@ -41,52 +42,9 @@ const nodes = [
     'ДолжностноеЛицо', 
     'Показатель', 
     'МуниципальноеОбразование', 
-    'Результат']
-    .reduce((o, v) => ({ ...o, [v]: { name: v, parents: {}, children: {} } }), {})
+    'Результат'
+    ].reduce((o, v) => ({ ...o, [v]: { name: v, parents: {}, children: {} } }), {})
 
-const coords=[
-    { top: "42%", left: "37%" },
-    { top: "47%", left: "22%" },
-    { top: "17%", left: "26%" },
-    { top: "12%", left: "44%" },
-    { top: "35%", left: "59%" },
-    { top: "64%", left: "65%" },
-    { top: "75%", left: "84%" },
-    { top: "73%", left: "27%" },
-    { top: "70%", left: "52%" },
-    { top: "75%", left: "37%" },
-    { top: "41%", left: "72%" },
-    { top: "25%", left: "27%" },
-    { top: "35%", left: "37%" },
-    { top: "46%", left: "77%" },
-    { top: "70%", left: "13%" },
-    { top: "19%", left: "13%" },
-    { top: "35%", left: "87%" },
-    { top: "45%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "74%", left: "40%" },
-    { top: "35%", left: "67%" },
-    { top: "42%", left: "82%" },
-
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-    { top: "75%", left: "37%" },
-]
 
 // Connect parent to children with relation
 const connect = (parent, child, type) => {
@@ -180,7 +138,7 @@ export default class Space extends React.Component {
         this.setState({ rounds: rounds })
     }
 
-    getHw = (item) => {
+    getHw = (item,index) => {
         if (this.state.currentNode === item.node) {
             return 3
         }
@@ -227,7 +185,7 @@ export default class Space extends React.Component {
                             theme={this.props.theme}
                             key={index}
                             item={item}
-                            hw={this.getHw(item)}
+                            hw={this.getHw(item,index)}
                             onClick={() => this.onNodeClick(item.node)}
                         />
                     )

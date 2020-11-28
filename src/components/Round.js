@@ -1,11 +1,11 @@
 import React from "react";
 import cn from 'classnames'
-
+import theme from '../styles/themes'
 export default class Round extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: '',
+            past: 0,
         }
     }
 
@@ -17,16 +17,19 @@ export default class Round extends React.Component {
 
     }
 
+    
+
     render() {
         return (
-            <div className={cn('round', {
-                'round-disappearing': this.props.hw === 4
-            })}
+            <div 
+            className={cn('round', {'round-disappearing': this.props.hw === 4})}
+                                                                                
                 style={{
-                    //backgroundColor: colors[this.props.theme].header,
+                    backgroundColor: (this.props.hw == 4 || this.props.hw == 0) ? '#0000' : ((this.props.hw === 3) ? '#8883' : '#8882'),
                     top: this.props.item.top,
                     left: this.props.item.left,
-                    borderWight: 1,
+                    borderWight: (this.props.hw == 4 || this.props.hw == 0) ? 0 :1,
+                    boxShadow: (this.props.hw == 4 || this.props.hw == 0)?'none':'1px 2px 7px 0px black',
                     width: +this.props.hw * 80,
                     height: +this.props.hw * 80,
                     display: 'flex',
@@ -35,7 +38,11 @@ export default class Round extends React.Component {
                     overflow: 'hidden',
                 }}
                 onClick={() => this.props.onClick()}>
-                <p>{this.props.item.name}</p>
+                <p
+                    style={{
+                        color: (this.props.hw == 4 || this.props.hw == 0) ? '#0000' : theme[this.props.theme].text,
+                    }}
+                >{this.props.item.name}</p>
             </div>
         )
     }
