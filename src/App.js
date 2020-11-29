@@ -88,7 +88,11 @@ setTheme=(theme)=>{
         height: '100vh', 
         backgroundColor: colors[this.state.theme].background,
         overflow: 'hidden' }}>
-        <Header {...this.state} onSearchAdd={(e)=>{this.onSearchAdd(e)}} />
+        <Header {...this.state} 
+          onSearchAdd={(e)=>{this.onSearchAdd(e)}} 
+          onMapOpen={() => this.setState({isMap: !this.state.isMap})}
+          onTheme={() => this.setState({ theme: (this.state.theme === 'dark') ?'light':'dark' })}
+        />
         <Space 
           {...this.state}
           allActiveColors={allActiveColors}

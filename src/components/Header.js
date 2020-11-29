@@ -1,6 +1,7 @@
 import React from "react";
 import colors from "../styles/themes"
-import { AiOutlineSearch } from 'react-icons/ai'; 
+import { AiOutlineSearch } from 'react-icons/ai';
+import { IoContrast, IoMapSharp } from "react-icons/io5"; 
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -29,6 +30,13 @@ export default class Header extends React.Component {
     render(){
         return(
             <div className='headerContainer' style={{ backgroundColor: colors[this.props.theme].header}}>
+                <div
+                    className='button'
+                    style={{ marginLeft: 16 }}
+                    onClick={() => { this.props.onTheme() }}
+                >
+                    <IoContrast name="search1" size={24} color={colors[this.props.theme].whiteStroke} />
+                </div>
                 <div className='inputContainer'>
                     <input className='headerSearchInput' 
                         style={{ 
@@ -47,6 +55,13 @@ export default class Header extends React.Component {
                     >
                         <AiOutlineSearch name="search1" size={24} color={colors[this.props.theme].whiteStroke} />
                     </div>
+                </div>
+                <div
+                    className='button'
+                    style={{ marginLeft: 16 }}
+                    onClick={() => { this.props.onMapOpen() }}
+                >
+                    <IoMapSharp name="search1" size={24} color={colors[this.props.theme].whiteStroke} />
                 </div>
             </div>
         )   

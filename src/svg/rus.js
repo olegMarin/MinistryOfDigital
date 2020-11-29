@@ -77,8 +77,8 @@ export default class RusSVG extends React.Component {
                wight: "100vw",
                height: this.props.isMap? '100vh': 0,
                transition: '1s',
-               
-               zIndex: 5,
+              backgroundColor: background,
+               zIndex: 60,
              }}
             >
                 <svg  width="100%" height="100%" 
