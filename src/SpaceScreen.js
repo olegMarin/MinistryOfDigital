@@ -1,6 +1,7 @@
 import React from "react";
 import Round from "./components/Round"
 import coords from "./styles/coords"
+import colors from "./styles/themes" 
 
 const nodes = [
     'ФизЛицо', 
@@ -190,10 +191,17 @@ export default class Space extends React.Component {
                         />
                     )
                 })}
-                <div style={{ position: 'absolute', right: 0, top: 200, display: 'flex', flexDirection: 'column' }}>
-                    {this.state.history.slice(0, this.state.history.length - 1).map((node) => (
-                        <a href="#" onClick={(e) => { e.preventDefault(); this.onNodeClick(node) }}>{node.name}</a>
-                    ))}
+                <div className='history'
+                style={{ 
+                    backgroundColor: colors[this.props.theme].backgroundHover,
+                    width: ((this.state.history.slice(0, this.state.history.length - 1).length)>0)?200:0,
+                    height: (this.state.history.slice(0, this.state.history.length - 1).length)*28
+                         }}>
+                    {this.state.history.slice(0, this.state.history.length - 1).map((node) => {
+                        let n = node.name.replace(/([а-я])([А-Я])/g, '$1 $2')
+                        return(
+                        <a href="#" onClick={(e) => { e.preventDefault(); this.onNodeClick(node) }}>{n}</a>
+                    )})}
                 </div>
             </div>
         )

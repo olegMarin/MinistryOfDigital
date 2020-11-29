@@ -58,6 +58,8 @@ path, rect, p {
   box-shadow: 1px 2px 7px 0px black;
   transition: 1s;
   cursor: pointer;
+} p { 
+  font-weight: 500;
 }
 
 .round-disappearing {
@@ -65,6 +67,38 @@ path, rect, p {
   transform: scale(3);
   opacity: 0;
   pointer-events: none;
+}
+
+.history {
+  position: absolute;
+  right: 0px;
+  top: 200px;
+  display: flex; 
+  flex-direction: column;
+  z-index: 6;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 200px;
+  height: auto;
+  min-height: 28px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  box-shadow: 1px 2px 7px 0px black;
+  transition: 1s;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.history a {
+  color: #8798AD;
+  font-size: 18px;
+  height: auto;
+  min-width: 140px;
+  padding: 2px;
+  transition: 1s;
+  text-decoration: none;
+  font-weight: 500;
+  text-align: right;
 }
 
 @keyframes round {
