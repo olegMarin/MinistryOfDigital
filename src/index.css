@@ -120,6 +120,17 @@ box-shadow: inset 1px 2px 7px 0px black;
   cursor: pointer;
 }
 
+.arrow {
+  position: absolute;
+  z-index: 6;
+  transition: 1s;
+  cursor: pointer;
+} 
+
+.arrow div {
+  transition: 1s;
+}
+
 @keyframes round {
   0% {
     opacity: 1;

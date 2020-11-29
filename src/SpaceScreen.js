@@ -1,7 +1,20 @@
 import React from "react";
 import Round from "./components/Round"
 import coords from "./styles/coords"
-import colors from "./styles/themes" 
+import coordsArr from "./styles/coordsArr"
+import colors from "./styles/themes"
+import Lottie from 'react-lottie';
+import animationArrow from './svg/arrow.json'
+import cn from 'classnames'
+
+const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationArrow,
+    rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+    }
+};
 
 const nodes = [
     'ФизЛицо', 
@@ -116,6 +129,8 @@ export default class Space extends React.Component {
             currentNode,
             hover: '',
             rounds: [],
+            isStopped: false, 
+            isPaused: false
         }
     }
 
@@ -152,6 +167,19 @@ export default class Space extends React.Component {
         return 0
     }
 
+    getHwa = (item, index) => {
+        if (this.state.currentNode === item.node) {
+            return 0
+        }
+        if (Object.values(this.state.currentNode.children).map(({ node }) => node).includes(item.node)) {
+            return 2
+        }
+        if (Object.values(this.state.currentNode.parents).map(({ node }) => node).includes(item.node)) {
+            return 4
+        }
+        return 0
+    }
+
     onNodeClick = (node) => {
         if (this.state.currentNode !== node) {
             this.setState({
@@ -169,6 +197,14 @@ export default class Space extends React.Component {
     }
 
     render() {
+        const defaultOptions = {
+            loop: true,
+            autoplay: true,
+            animationData: animationArrow,
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+            }
+        };
         return (
             <div
                 style={{
@@ -180,6 +216,27 @@ export default class Space extends React.Component {
                     position: 'absolute'
                 }}
             >
+                {this.state.rounds.map((item, index) => {
+                    let hwa = this.getHwa(item, index)
+                    return (
+                        <div className={cn('arrow', { 'round-disappearing': this.props.hw === 4 })}   
+                        style={{
+                            top: coordsArr[index].top,
+                            left: coordsArr[index].left,
+                            transform: "rotate(" + coordsArr[index].transform+"deg)" ,
+                        }}
+                        key={index}
+                        >
+                        <Lottie
+                         options={defaultOptions}
+                            height={(hwa === 0) ? 0 :25}
+                            width={(hwa===0)?0:coordsArr[index].width}
+                            isStopped={this.state.isStopped}
+                            isPaused={this.state.isPaused} 
+
+                            />
+                    </div>)})
+                }          
                 {this.state.rounds.map((item, index) => {
                     return (
                         <Round

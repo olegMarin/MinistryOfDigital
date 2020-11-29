@@ -11,7 +11,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      theme: 'dark',
+      theme: 'light',
       droped: [], //тут будут лежать все регионы, в которые дропнуты сущности данных
       clicked: '', //тут лежит регион, по которому кликнули последний раз
       regionsBackground: {},
