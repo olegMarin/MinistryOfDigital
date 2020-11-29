@@ -22,7 +22,7 @@ const colors = {
         dragStroke: '#474',
         coast: '#00ccff',
         header: '#2E5BFF88',
-        text: '#ccc'
+        text: '#eee'
     }
 }
 

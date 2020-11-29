@@ -17,7 +17,8 @@ export default class App extends React.Component {
       regionsBackground: {},
       ip: null,
       myRegion: {},
-      isMap: false
+      isMap: false,
+      onSearch: '',
     }
   }
 
@@ -37,6 +38,11 @@ componentDidMount(){
     .catch(error => {
       console.log(error);
     });
+}
+
+onSearchAdd=(e)=>{
+  this.setState({ onSearch: e})
+
 }
 
 setTheme=(theme)=>{
@@ -60,6 +66,7 @@ setTheme=(theme)=>{
   handlerOnDropDataToRegion=(region)=>{
     console.log(region)
   }
+
   handlerOnClickToRegion = (region) => {
     this.setState({clicked: region})
   }
@@ -81,10 +88,11 @@ setTheme=(theme)=>{
         height: '100vh', 
         backgroundColor: colors[this.state.theme].background,
         overflow: 'hidden' }}>
-        <Header {...this.state} />
+        <Header {...this.state} onSearchAdd={(e)=>{this.onSearchAdd(e)}} />
         <Space 
           {...this.state}
           allActiveColors={allActiveColors}
+          onSearchAdd={(e) => { this.onSearchAdd(e) }}
         />
         <RusSVG 
           {...this.state} 

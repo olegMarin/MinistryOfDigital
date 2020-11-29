@@ -11,13 +11,18 @@ export default class Header extends React.Component {
         }
     }
 
-    handleKeyPress(event) {
+    onSearch=()=>{
+        this.props.onSearchAdd(this.state.search)
+    }
+
+    handleKeyPress=(event) =>{
         if (event.key == 'Enter') {
-            console.log('enter press here! ')
+            this.onSearch()
         }
+
     }
     changeSearch=(value)=>{
-        //тут прокидываем наверх найденные варианты, чтобы предлагались новые экземпляры
+    
         this.setState({search: value})
     }
 
@@ -35,7 +40,11 @@ export default class Header extends React.Component {
                         value={this.state.search}
                         placeholder={this.state.placeholder}
                          />
-                    <div className='button' style={{marginLeft: 16}}>
+                    <div 
+                    className='button' 
+                    style={{marginLeft: 16}}
+                        onClick={() => { this.onSearch()}}
+                    >
                         <AiOutlineSearch name="search1" size={24} color={colors[this.props.theme].whiteStroke} />
                     </div>
                 </div>

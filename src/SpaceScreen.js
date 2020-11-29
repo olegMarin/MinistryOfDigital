@@ -7,15 +7,6 @@ import Lottie from 'react-lottie';
 import animationArrow from './svg/arrow.json'
 import cn from 'classnames'
 
-const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationArrow,
-    rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-    }
-};
-
 const nodes = [
     'ФизЛицо', 
     'Государство', 
@@ -195,7 +186,7 @@ export default class Space extends React.Component {
             }
         }
     }
-
+    
     render() {
         const defaultOptions = {
             loop: true,
@@ -205,6 +196,16 @@ export default class Space extends React.Component {
                 preserveAspectRatio: 'xMidYMid slice'
             }
         };
+
+    if(this.props.onSearch.length>3){
+        Object.keys(nodes).map((key, index)=>{
+        if (key.toLowerCase().includes(this.props.onSearch.toLowerCase())) {
+            this.props.onSearchAdd('')
+        
+            this.onNodeClick(nodes[key])
+        }})
+    }
+
         return (
             <div
                 style={{
