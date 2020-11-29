@@ -27,6 +27,13 @@ path, rect, p {
   flex-direction: row;
   align-items: center;
   z-index: 7;
+   box-shadow: 1px 2px 7px 0px black;
+}
+
+.inputContainer{
+  display: flex;
+  flex-direction: row;
+
 }
 
 .headerSearchInput{
@@ -39,7 +46,7 @@ path, rect, p {
 
   background: #FFFFFF;
   /* 3 */
-
+box-shadow: inset 1px 2px 7px 0px black;
   border: 1px solid #8798AD;
   box-sizing: border-box;
   border-radius: 40px;
@@ -99,6 +106,18 @@ path, rect, p {
   text-decoration: none;
   font-weight: 500;
   text-align: right;
+}
+
+.button {
+  background-color: #2f2f47;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 2px 7px 0px black;
+  cursor: pointer;
 }
 
 @keyframes round {

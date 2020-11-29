@@ -1,5 +1,6 @@
 import React from "react";
 import colors from "../styles/themes"
+import { AiOutlineSearch } from 'react-icons/ai'; 
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -34,6 +35,9 @@ export default class Header extends React.Component {
                         value={this.state.search}
                         placeholder={this.state.placeholder}
                          />
+                    <div className='button' style={{marginLeft: 16}}>
+                        <AiOutlineSearch name="search1" size={24} color={colors[this.props.theme].whiteStroke} />
+                    </div>
                 </div>
             </div>
         )
