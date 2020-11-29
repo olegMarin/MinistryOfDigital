@@ -91,7 +91,10 @@ setTheme=(theme)=>{
         <Header {...this.state} 
           onSearchAdd={(e)=>{this.onSearchAdd(e)}} 
           onMapOpen={() => this.setState({isMap: !this.state.isMap})}
-          onTheme={() => this.setState({ theme: (this.state.theme === 'dark') ?'light':'dark' })}
+          onTheme={() => {
+            this.setState({ theme: (this.state.theme === 'dark') ?'light':'dark' })
+            this.changeRegionsBackground()
+            }}
         />
         <Space 
           {...this.state}

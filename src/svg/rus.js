@@ -74,10 +74,11 @@ export default class RusSVG extends React.Component {
         return (
             <div 
              style={{
-               wight: "100vw",
+               width: '100vw',
                height: this.props.isMap? '100vh': 0,
                transition: '1s',
-              backgroundColor: background,
+              backgroundColor: allBackground,
+              position: 'absolute',
                zIndex: 60,
              }}
             >
